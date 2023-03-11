@@ -16,10 +16,13 @@ if(NOT DIRTY)
         -Wno-c++98-compat
         -Wno-c++98-compat-extra-semi
         -Wno-pre-c++20-compat-pedantic
-        -Wno-gnu-anonymous-struct # Technically UB, but too tasty
-        -Wno-nested-anon-types    # Technically UB, but too tasty
-        -Wno-weak-vtables         # Weak vtables are fine I guess?
-        -Wno-padded               # This is not even a problem?
+        -Wno-gnu-anonymous-struct  # Technically UB, but too tasty
+        -Wno-nested-anon-types     # Technically UB, but too tasty
+        -Wno-weak-vtables          # Weak vtables are fine I guess?
+        -Wno-padded                # This is not even a problem?
+        -Wno-c++98-compat-pedantic # No commas at end of lists?!
+        -Wno-exit-time-destructors # Allow global/static objects
+        -Wno-global-constructors   # Allow global/static objects
     )
 endif()
 
