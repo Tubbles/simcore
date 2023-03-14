@@ -4,20 +4,37 @@ set -euo pipefail
 
 my_dir="$(dirname "$(realpath "$0")")"
 
+usage="Usage: $0 [options..], where [options..] can be zero or more of:"
+available_args_and_explanations=(
+    "help" "Show this help"
+    "verbose" "Be more verbose during execution"
+    "clean" "Clean the output directory before building"
+    "release" "Build for release mode"
+    "dirty" "Do not generate warnings and errors"
+    "tidy" "Do not build, instead run clang-tidy checks (takes some time)"
+    "run" "Run the program after build"
+)
+
+for ((i = 0; i < ${#available_args_and_explanations[@]}; i += 2)); do
+    usage+="
+    ${available_args_and_explanations[i]} - ${available_args_and_explanations[i + 1]}"
+    available_args+=("${available_args_and_explanations[i]}")
+done
+
 args=("$@")
 cmake_args=()
 ninja_args=()
 
+for arg in ${args[@]}; do
+    if [[ ! " ${available_args[*]} " =~ " ${arg} " ]]; then
+        echo -e "\nERROR: Unknown argument: ${arg}\n\n${usage}"
+        exit 1
+    fi
+done
+
 # Parse args
 if [[ " ${args[*]} " =~ " help " ]]; then
-    echo "Usage: $0 [options..], where [options..] can be zero or more of:
-        help
-        verbose
-        clean - Clean the output directory before building
-        release - Build for release mode
-        dirty - Do not generate warnings and errors
-        tidy - Do not build, instead run clang-tidy checks (takes some time)
-        run - Run the program after build"
+    echo "${usage}"
     exit
 fi
 

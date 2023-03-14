@@ -5,6 +5,8 @@
 
 #include <entt/entt.hpp>
 
+// This is the best way to do it for a constexpr getter function
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 extern entt::registry g_registry;
 
 struct position {

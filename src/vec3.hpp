@@ -26,6 +26,7 @@ struct vec3_t {
     [[nodiscard]] constexpr vec3_t(r64 e0, r64 e1, r64 e2) noexcept : e{e0, e1, e2} {}
     // NOLINTNEXTLINE(hicpp-member-init)
     [[nodiscard]] constexpr vec3_t(r64 e0, r64 e1) noexcept : e{e0, e1, 0.0} {} // x,y ctor
+    constexpr ~vec3_t() = default;
 
     // Blanket rule of 5
     // Members initialized through union

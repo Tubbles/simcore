@@ -5,6 +5,8 @@
 
 #include <fmt/core.h>
 
+// This is the best way to do it for a constexpr getter function
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 entt::registry g_registry;
 
 static void update() {
@@ -22,7 +24,7 @@ static void update() {
 int main() {
     auto &registry = get_registry();
 
-    for (auto index = 0u; index < 10u; ++index) {
+    for (auto index = 0; index < 10; ++index) {
         const auto entity = registry.create();
         registry.emplace<position>(entity, vec3_t{index * 1., index * 1.});
         if (index % 2 == 0 || index % 3 == 0) {
