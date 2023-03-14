@@ -1,6 +1,7 @@
 set(sources
     ${CMAKE_CURRENT_LIST_DIR}/main.cpp
     ${CMAKE_CURRENT_LIST_DIR}/schedule.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/tick.cpp
 )
 
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${sources})

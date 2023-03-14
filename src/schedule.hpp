@@ -5,6 +5,7 @@
 using callback_t = std::function<void()>;
 
 enum class schedule_phase_t {
+    pre_update,
     update,
     draw,
     num_phases,
